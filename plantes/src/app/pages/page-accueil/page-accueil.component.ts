@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PlantService } from 'src/app/services/plant.service';
 import * as _ from 'underscore';
+import { Options , LabelType } from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-page-accueil',
@@ -15,6 +16,24 @@ export class PageAccueilComponent implements OnInit {
   private subListProduct: Subscription;
   public listProduct!: any[];
   public term!: "";
+
+  min: number = 30;
+  max: number = 120;
+  options: Options = {
+    floor: 0,
+    ceil: 150,
+    translate: (value: number, label: LabelType): string => {  
+        switch (label) {  
+            case LabelType.Low:  
+                return "<b>Min price:</b> $" + value;  
+            case LabelType.High:  
+                return "<b>Max price:</b> $" + value;  
+            default:  
+                return "$" + value;  
+        }  
+    }
+  }
+
 
   constructor(private plantService: PlantService) {
 
@@ -43,17 +62,29 @@ export class PageAccueilComponent implements OnInit {
 
   addItem(term: any) {
     console.log(term);
-    if (term.trim() != '') {
-      this.listProduct = this.listProduct.filter((product) => {
+    this.plantService.subjectListProduct$.subscribe(products => {
+      if (term.trim() != '') {
+      this.listProduct = products.filter((product) => {
           return (product.product_name.toLowerCase().indexOf(term.toLowerCase()) > -1)
       })
     } else {
-      this.plantService.subjectListProduct$.subscribe(products => {
-          console.log(products);
-          this.listProduct = products;
-      })
-      this.plantService.getListProductsChaud();
+      this.listProduct = products;
     }
+  })
+    this.plantService.getListProductsChaud();
   }
 
+  displayItem($event: any) {
+
+      this.plantService.subjectListProduct$.subscribe(listProduct => {
+        this.listProduct = listProduct.filter(product => {
+          return product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue
+        });
+      console.log("yoo")
+      console.log(listProduct)
+      })    
+      this.plantService.getListProductsChaud();
+  };
+
 }
+  

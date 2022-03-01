@@ -14,7 +14,8 @@ import { CardPlantComponent } from './components/card-plant/card-plant/card-plan
 import { IconComponent } from './components/icon/icon.component';
 import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { FormsModule, NgForm } from '@angular/forms';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormsModule, NgForm } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
