@@ -9,7 +9,11 @@ import { environment } from 'src/environments/environment';
 export class PlantService {
   baseUrl: string;
 
+  mycategorys: Observable<any>;
+
   subjectListProduct$ = new Subject<any[]>();
+  subjectCategorysProduct$ = new Subject<any[]>();
+
   // Observable: flux de donnee entre nos composants ou 
   // flux de donnee async qui provient d'un serveur API.
 
@@ -24,8 +28,11 @@ export class PlantService {
 
   behav$ = new BehaviorSubject<string>('Video janvier 2022');
 
+  private myCategorysSubject = new Subject<any>();
+
   constructor(private http: HttpClient) {
     this.baseUrl = environment.baseUrlApi;
+    this.mycategorys = this.myCategorysSubject.asObservable();
 
     // Abonnement observable froid (flux de donnee)
     this.obs$.subscribe(data => {

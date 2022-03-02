@@ -16,10 +16,11 @@ export class PageAccueilComponent implements OnInit {
   private subListProduct: Subscription;
   public listProduct!: any[];
   public term!: "";
+  public listProductFiltered!: any[];
   public isAscendingSort: boolean = false;
 
-  min: number = 30;
-  max: number = 120;
+  min: number = 0;
+  max: number = 150;
   options: Options = {
     floor: 0,
     ceil: 150,
@@ -44,10 +45,10 @@ export class PageAccueilComponent implements OnInit {
      this.listCategories = _.uniq(this.data.map (x => x.breadcrumb_label));
      console.log(this.listCategories);
 
-     response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
-     this.listProduct = [...response]
+    //  response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
+     this.listProduct = [...response];
+     this.listProductFiltered = this.listProduct
    })
-
    this.plantService.getListProductsChaud();
    // declancher la req API et la resp est transmise avec un Subject
   }
@@ -77,13 +78,13 @@ export class PageAccueilComponent implements OnInit {
 
   displayItem($event: any) {
 
-      this.plantService.subjectListProduct$.subscribe(listProduct => {
-        this.listProduct = listProduct.filter(product => {
+      this.plantService.subjectListProduct$.subscribe(listProductFiltered => {
+        this.listProductFiltered = listProductFiltered.filter(product => {
           return product.unitprice_ati >= $event.value && product.unitprice_ati <= $event.highValue
         });
         console.log("yoo")
-        console.log(listProduct)
-      })    
+        console.log(listProductFiltered)
+      })  
       this.plantService.getListProductsChaud();
   };
 
@@ -100,6 +101,16 @@ export class PageAccueilComponent implements OnInit {
       }
     });
     return arr;
+  }
+
+  changeCategory(event:any) {
+
+    console.log("arrayCat",event);
+    if (event.length !== 0) {
+      this.listProductFiltered = this.listProduct.filter(x => event.includes(x.breadcrumb_label));
+    } else {
+      this.listProductFiltered = this.listProduct;
+    }
   }
 
 }
