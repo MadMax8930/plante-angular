@@ -10,13 +10,7 @@
 
         <div class="custom-search">
             <app-searchbar (searchEvent)="addItem($event)" class="bar"></app-searchbar>
-
-            <div class="py-3">
-                Trier par : 
-                <button class="btn btn-outline-success btn-sm me-2">Prix</button> 
-                <button class="btn btn-outline-success btn-sm me-2">Ordre Alpha</button> 
-                <button class="btn btn-outline-success btn-sm me-2">Avis</button>
-            </div>
+            <app-btn-filter (click)="onClickBtn($event)"></app-btn-filter>
         </div>
 
         <div class="custom-slider">

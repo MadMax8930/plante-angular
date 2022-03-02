@@ -2,11 +2,11 @@
 
     <app-icon class="like"[name]="'heart'" [size]="2" [color]="'#e35d6a'"></app-icon>
 
-    <img src="{{plant.product_url_picture}}" class="card-img-top" alt="{{plant.product_name}}">
+    <img src="{{plant.url_picture}}" class="card-img-top" alt="{{plant.name}}">
     <!-- src product_url_picture -->
     <!-- alt product_name -->
     <div class="card-body">
-        <h6 class="card-title">{{plant.product_name}}</h6> 
+        <h6 class="card-title">{{plant.name}}</h6> 
         <!-- product_name -->
         <div class="card-content">
             <app-avis-bar></app-avis-bar>
@@ -15,7 +15,7 @@
         
         <div class="d-flex flex-row align-items-end justify-content-between">
             <div class="card-content"> 
-                <span class="align-bottom">{{plant.product_unitprice_ati}}</span>
+                <span class="align-bottom">{{plant.unitprice_ati}}</span>
                 <!-- product_unitprice_ati -->
             </div>
             <a href="#" class="btn btn-success">Pour moi !</a>

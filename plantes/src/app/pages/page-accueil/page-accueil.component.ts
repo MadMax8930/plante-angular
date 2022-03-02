@@ -16,6 +16,7 @@ export class PageAccueilComponent implements OnInit {
   private subListProduct: Subscription;
   public listProduct!: any[];
   public term!: "";
+  public isAscendingSort: boolean = false;
 
   min: number = 30;
   max: number = 120;
@@ -40,7 +41,7 @@ export class PageAccueilComponent implements OnInit {
     this.subListProduct = this.plantService.subjectListProduct$.subscribe(response => {
      console.log(response);
      this.data = response;
-     this.listCategories = _.uniq(this.data.map (x => x.product_breadcrumb_label));
+     this.listCategories = _.uniq(this.data.map (x => x.breadcrumb_label));
      console.log(this.listCategories);
 
      response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
@@ -64,8 +65,8 @@ export class PageAccueilComponent implements OnInit {
     console.log(term);
     this.plantService.subjectListProduct$.subscribe(products => {
       if (term.trim() != '') {
-      this.listProduct = products.filter((product) => {
-          return (product.product_name.toLowerCase().indexOf(term.toLowerCase()) > -1)
+      this.listProduct = products.filter(product => {
+          return (product.name.toLowerCase().indexOf(term.toLowerCase()) > -1)
       })
     } else {
       this.listProduct = products;
@@ -78,13 +79,28 @@ export class PageAccueilComponent implements OnInit {
 
       this.plantService.subjectListProduct$.subscribe(listProduct => {
         this.listProduct = listProduct.filter(product => {
-          return product.product_unitprice_ati >= $event.value && product.product_unitprice_ati <= $event.highValue
+          return product.unitprice_ati >= $event.value && product.unitprice_ati <= $event.highValue
         });
-      console.log("yoo")
-      console.log(listProduct)
+        console.log("yoo")
+        console.log(listProduct)
       })    
       this.plantService.getListProductsChaud();
   };
+
+  onClickBtn(arr: any): void {
+    console.log(`Event Change : $eventValue`)
+    this.isAscendingSort != this.isAscendingSort;
+    arr.sort((a: any, b: any) => {
+      if (a.unitprice_ati < b.unitprice_ati) {
+        return -1;
+      } else if (a.unitprice_ati > b.unitprice_ati) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    return arr;
+  }
 
 }
   

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Pipe } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http'
 
@@ -16,6 +16,8 @@ import { AvisBarComponent } from './components/avis-bar/avis-bar.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { FormsModule } from '@angular/forms';
+import { PipePipe } from './pipe.pipe';
+import { BtnFilterComponent } from './components/btn-filter/btn-filter.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { FormsModule } from '@angular/forms';
     CardPlantComponent,
     IconComponent,
     AvisBarComponent,
-    SearchbarComponent
+    SearchbarComponent,
+    PipePipe,
+    BtnFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     NgxSliderModule
   ],
-  providers: [],
+  providers: [PipePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
