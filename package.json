@@ -1,6 +1,9 @@
 {
-  "name": "plantes",
-  "version": "14.17.3",
+  "name": "live-plante",
+  "version": "1.0.0",
+  "engines": {
+    "node": "14.17.3"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
