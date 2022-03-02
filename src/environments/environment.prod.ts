@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrlApi: 'https://la-belle-plante-test.herokuapp.com'
 };
