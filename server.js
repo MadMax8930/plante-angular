@@ -1,3 +1,12 @@
-const port = process.env.PORT || 80;
+const express = require('express');
 
-server.listen(port);
+const path = require('path');
+const app = express();
+
+app.use(express.static(dirname + '/dist/live-plante'));
+
+app.get('/*', function(req,res) {
+res.sendFile(path.join(dirname+
+'/dist/live-plante/index.html'));});
+
+app.listen(process.env.PORT || 8080);
