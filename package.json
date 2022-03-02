@@ -12,8 +12,7 @@
     "test": "ng test --configuration=ci",
     "e2e": "ng e2e",
     "api": "json-server --watch products.json",
-    "lint": "ng lint",
-    "heroku-postbuild": "ng build — prod"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
