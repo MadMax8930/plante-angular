@@ -93,4 +93,10 @@ export class PlantService {
       this.subjectListProduct$.next(data);
     })
   }
+
+  getById(id: any): Observable<any[]> {
+    // requete http sur l'url http://localhost:3000/list_products
+    return this.http.get<any[]>(`${this.baseUrl}/list_products/${parseInt(id)}`);
+  }
+
 }

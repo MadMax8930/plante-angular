@@ -18,7 +18,10 @@
                 <span class="align-bottom">{{plant.unitprice_ati}}</span>
                 <!-- product_unitprice_ati -->
             </div>
-            <a href="#" class="btn btn-success">Pour moi !</a>
+            <a [routerLink]="['/product/']"
+               [queryParams]="{ id: plant.id }"
+               queryParamsHandling="merge"
+               class="btn btn-success">Pour moi !</a>
         </div>
     </div>
 </div>

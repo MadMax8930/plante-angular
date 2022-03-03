@@ -18,6 +18,7 @@ export class PageAccueilComponent implements OnInit {
   public term!: "";
   public listProductFiltered!: any[];
   public isAscendingSort: boolean = false;
+  public tab: any = [];
 
   min: number = 0;
   max: number = 150;
@@ -45,7 +46,7 @@ export class PageAccueilComponent implements OnInit {
      this.listCategories = _.uniq(this.data.map (x => x.breadcrumb_label));
      console.log(this.listCategories);
 
-     response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
+    //  response.length = 40; // juste pour le dev dans notre contexte d'apprentissage
      this.listProduct = [...response];
      this.listProductFiltered = this.listProduct
    })
@@ -66,7 +67,7 @@ export class PageAccueilComponent implements OnInit {
     console.log(term);
     this.plantService.subjectListProduct$.subscribe(products => {
       if (term.trim() != '') {
-      this.listProduct = products.filter(product => {
+      this.listProductFiltered = products.filter(product => {
           return (product.name.toLowerCase().indexOf(term.toLowerCase()) > -1)
       })
     } else {
@@ -82,8 +83,11 @@ export class PageAccueilComponent implements OnInit {
         this.listProductFiltered = listProductFiltered.filter(product => {
           return product.unitprice_ati >= $event.value && product.unitprice_ati <= $event.highValue
         });
-        console.log("yoo")
+        // console.log($event.value)
+        // console.log($event.highValue)
         console.log(listProductFiltered)
+        this.tab = [$event.value, $event.highValue]
+        console.log(this.tab)
       })  
       this.plantService.getListProductsChaud();
   };
@@ -108,10 +112,13 @@ export class PageAccueilComponent implements OnInit {
     console.log("arrayCat",event);
     if (event.length !== 0) {
       this.listProductFiltered = this.listProduct.filter(x => event.includes(x.breadcrumb_label));
+      this.listProductFiltered = this.listProductFiltered.filter(x => x.unitprice_ati >= this.tab[0] && x.unitprice_ati <= this.tab[1]);
     } else {
       this.listProductFiltered = this.listProduct;
+      window.location.reload();
     }
-  }
+
+}
 
 }
   

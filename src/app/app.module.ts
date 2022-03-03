@@ -9,6 +9,7 @@ import { PageAccueilComponent } from './pages/page-accueil/page-accueil.componen
 import { PageDetailsComponent } from './pages/page-details/page-details.component';
 import { PagePanierComponent } from './pages/page-panier/page-panier.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { PageProductComponent } from './pages/page-product/page-product.component';
 import { FilterSideBarComponent } from './components/filter-side-bar/filter-side-bar.component';
 import { CardPlantComponent } from './components/card-plant/card-plant/card-plant.component';
 import { IconComponent } from './components/icon/icon.component';
@@ -33,7 +34,8 @@ import { BtnFilterComponent } from './components/btn-filter/btn-filter.component
     AvisBarComponent,
     SearchbarComponent,
     PipePipe,
-    BtnFilterComponent
+    BtnFilterComponent,
+    PageProductComponent
   ],
   imports: [
     BrowserModule,
