@@ -5,10 +5,10 @@ const app = express();
 
 var port = process.env.PORT || 80
 
-app.use(express.static(dirname + '/dist/live-plante'));
+app.use(express.static(dirname + '/dist/plantes'));
 
 app.get('/*', function(req,res) {
 res.sendFile(path.join(dirname+
-'/dist/live-plante/index.html'));});
+'/dist/plantes/index.html'));});
 
 app.listen(port);

@@ -46,6 +46,12 @@ jobs:
     - name: Build app
       run: npm run build
 
+    - name: Upload artifact
+    uses: actions/upload-artifact@v2
+    with:
+      name: devops-test-${{ github.run_id }}-${{ github.run_number }}
+      path: ./dist/devops-test
+
   deploy: 
     needs: build
     runs-on: ubuntu-latest
