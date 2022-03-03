@@ -8,12 +8,13 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build --configuration production",
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --configuration=ci",
     "e2e": "ng e2e",
     "api": "json-server --watch products.json",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
