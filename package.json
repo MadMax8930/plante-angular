@@ -2,19 +2,18 @@
   "name": "live-plante",
   "version": "1.0.0",
   "engines": {
-    "node": "14.17.3",
-    "npm": "6.14.13"
+    "node": "16.14.0",
+    "npm": "8.5.1"
   },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
+    "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --configuration=ci",
     "e2e": "ng e2e",
     "api": "json-server --watch products.json",
-    "lint": "ng lint",
-    "heroku-postbuild": "ng build --configuration production"
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
